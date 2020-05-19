@@ -13,16 +13,17 @@ public class HelloController implements HttpRequestHandler {
 	@Override
 	public void handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		//接受参数
 		String name = request.getParameter("name");
 		System.out.println("param name -" + name);
-		
+				
 		//调用service向request传值
 		request.setAttribute("result", "Hello " + name);
 		
 		//返回页面
 		request.getRequestDispatcher("/hello.jsp").forward(request, response);
-
+		
 	}
 
 }

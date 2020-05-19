@@ -20,6 +20,15 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>javax.servlet-api</artifactId>
+    	<scope>provided</scope><!-- 表示仅在编译时有效，打jar包是不会包含在内 -->
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <finalName>springmvc-01-hello</finalName>
