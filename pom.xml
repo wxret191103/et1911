@@ -13,6 +13,7 @@
 		<module>springmvc-02</module>
 		<module>springmvc-03</module>
 		<module>springmvc-04-param</module>
+		<module>springmvc-05-car</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
@@ -44,6 +45,18 @@
 				<artifactId>jackson-dataBind</artifactId>
 				<version>2.9.5</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf</artifactId>
+				<version>3.0.11.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf-spring5</artifactId>
+				<version>3.0.11.RELEASE</version>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 
