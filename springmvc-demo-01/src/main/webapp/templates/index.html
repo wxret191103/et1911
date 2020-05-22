@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+	</head>
+	<body>
+		<div>
+			<h2>添加</h2>   
+			<form th:action="@{/user/add}" method="post">
+				id: <input type="text" name="id" id="uid"/>
+				姓名: <input type="text" name="name" id="uname"/><br />
+				爱好: 
+					<input type="checkbox" name="hobby" value="看书" />看书
+					<input type="checkbox" name="hobby" value="旅游" />旅游
+					<input type="checkbox" name="hobby" value="听音乐" />听音乐<br />
+				<input type="button" value="提交" onclick="add()" />	
+			</form>
+		</div>
+		<hr />
+		<h2>列表</h2>
+		<table>
+			<thead>
+				<th>ID</th>
+				<th>姓名</th>
+				<th>爱好</th>
+				<th>操作</th>
+			</thead>
+			<tbody id="tb"></tbody>
+		</table>	
+		<hr />
+		<h2>修改</h2>
+		<form th:action="@{/user/update}" method="post">
+			ID: <input type="text" name="id" id="id" /><br />
+			姓名: <input type="text" name="name" id="name" /><br />
+			爱好: 
+				<input type="checkbox" name="hobby" value="看书" />看书
+				<input type="checkbox" name="hobby" value="旅游" />旅游
+				<input type="checkbox" name="hobby" value="听音乐" />听音乐<br />
+			<input type="button" value="提交" onclick="update()" />	
+		</form>
+		<script th:src="@{/static/js/jquery/jquery.min.js}" type="text/javascript"></script>	
+		<script th:inline="javascript" type="text/javascript">
+			const path = [[${#request.getContextPath()}]];
+			
+			$(function(){
+				et1911.query();
+			})
+			
+			function add(){
+				let id = parseInt($('#uid').val());
+				let name = $('#uname').val();
+				let hobbyList = [];
+				$.each($('input[name=hobby]:checked'),(index,item)=>{
+					hobbyList.push(item.value);
+				});
+				let obj = {id:id,name:name,hobbyList:hobbyList};
+				$.ajax({
+					url:path + '/user/add',
+					type:'post',
+					data:JSON.stringify(obj),
+					dataType:'json',
+					contentType:'application/json;charset=UTF-8',
+					success:function(data){
+						alert(data);
+						et1911.query();
+					}
+				})
+			}
+			let et1911={
+				query:function(){
+						$.ajax({
+							url:path + '/user/listAll',
+							type:'post',
+							data:'',
+							dataType:'json',
+							contentType:'application/json;charset=UTF-8',
+							success:function(data){
+								let msg = "";
+								$.each(data,function(i,d){
+									msg += "<tr><td>"+d.id+"</td><td>"+d.name+"</td><td>"+d.hobbyList+
+									"</td><td><button id='delbtn' onclick=\"del("+d.id+")\">删除</button></td></tr>";
+								});
+								$('#tb').html(msg);
+							}
+						})
+					}
+			}
+			
+			
+			function update(){
+				let id = parseInt($('#id').val());
+				let name = $('#name').val();
+				let hobbyList = [];
+				$.each($("input[name='hobby']:checked"),(index,item)=>{
+					hobbyList.push(item.value);
+				});
+				let obj = {id:id,name:name,hobbyList:hobbyList};
+				$.ajax({
+					url:path + '/user/update',
+					type:'post',
+					data:JSON.stringify(obj),
+					dataType:'json',
+					contentType:'application/json;charset=UTF-8',
+					success:function(data){
+						alert(data);
+						et1911.query();
+					}
+				})
+				
+			}
+			
+			function del(id){
+				$.ajax({
+					url:path + '/user/del',
+					type:'post',
+					data:'id=' + id,
+					dataType:'text',
+					success:function(data){
+						alert(data);
+					}
+					
+				});
+			}
+			
+		
+			
+		</script>
+	
+		
+	</body>
+</html>
