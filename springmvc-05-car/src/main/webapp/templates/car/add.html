@@ -13,6 +13,10 @@
 </style>
 </head>
 <body>
+	<div>
+		<span th:text="${paramError}"></span>
+	</div>
+	
 	<div id="form">
 		<form id="addForm" th:action="@{/car/add}" class="form-horizontal"
 			role="form" enctype="multipart/form-data" method="post">
@@ -138,7 +142,7 @@
 		et1911.querySelectDict("level");
 		et1911.querySelectDict('output_v');
 		et1911.queryGearBox();
-		et1911.validateForm();
+		//et1911.validateForm();
 	});
 	
 	laydate.render({
