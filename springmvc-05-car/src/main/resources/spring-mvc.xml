@@ -52,7 +52,30 @@
 		<!-- 文件大小限制2MB -->
 		<property name="maxUploadSize" value="2097152" />
 	</bean>
-
+	
+	<!-- 
+		@GetMapping("/index")
+		public STring index(){
+			return "index";
+		}
+	 -->
+	<mvc:view-controller path="/" view-name="index" />
+	<mvc:view-controller path="/user/toLogin" view-name="login" />
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 配置需要拦截的地址，/**表示拦截所有 -->
+			<mvc:mapping path="/**"/>
+			
+			<!-- 配置不需要拦截的地址 -->
+			<mvc:exclude-mapping path="/static/**"/>
+			<mvc:exclude-mapping path="/code"/>
+			<mvc:exclude-mapping path="/user/toLogin"/>
+			<mvc:exclude-mapping path="/user/login"/>
+			<bean class="com.etoak.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>
 
 

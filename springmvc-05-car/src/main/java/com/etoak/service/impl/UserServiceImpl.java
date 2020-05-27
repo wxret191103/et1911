@@ -11,11 +11,17 @@ import com.etoak.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserMapper UserMapper;
+	UserMapper userMapper;
 	
 	@Override
 	public User getById(int id) {
-		return UserMapper.getById(id);
+		return userMapper.getById(id);
+	}
+
+	@Override
+	public User getByNameAndPassword(String name, String password) {
+		
+		return userMapper.getByNameAndPassword(name, password);
 	}
 
 	
