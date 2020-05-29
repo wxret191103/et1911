@@ -1,19 +1,22 @@
 <?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.etoak.et1911</groupId>
-		<artifactId>et1911</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>springmvc-05-car</artifactId>
-	<packaging>war</packaging>
-	<name>springmvc-05-car Maven Webapp</name>
-	<url>http://maven.apache.org</url>
-	
-	<dependencies>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.etoak.et1911</groupId>
+    <artifactId>et1911-activemq</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>activemq-springmvc</artifactId>
+  <packaging>war</packaging>
+  <properties>
+  	<failOnMissingWebXml>false</failOnMissingWebXml>
+  </properties>
+  
+  <name>activemq-springmvc Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -111,8 +114,43 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 		</dependency>
+		
+		<!-- 整合spring -->
+  		<dependency>
+  			<groupId>javax.jms</groupId>
+  			<artifactId>javax.jms-api</artifactId>
+  		</dependency>
+  		
+  		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-jms</artifactId>
+  		</dependency>
+  		
+  		<dependency>
+  			<groupId>org.apache.activemq</groupId>
+  			<artifactId>activemq-pool</artifactId>
+  		</dependency>
+  		
+  		<dependency>
+  			<groupId>org.apache.activemq</groupId>
+  			<artifactId>activemq-broker</artifactId>
+  			<!-- 剔除旧版本的jackson-databind -->
+  			<exclusions>
+  				<exclusion>
+  					<groupId>com.fasterxml.jackson.core</groupId>
+  					<artifactId>jackson-databind</artifactId>
+  				</exclusion>
+  			</exclusions>
+  		</dependency>
+  		
+  		<dependency>
+  			<groupId>com.alibaba</groupId>
+  			<artifactId>fastjson</artifactId>
+  		</dependency>
+  		
+  		
 	</dependencies>
-	<build>
-		<finalName>springmvc-05-car</finalName>
-	</build>
+  <build>
+    <finalName>activemq-springmvc</finalName>
+  </build>
 </project>
